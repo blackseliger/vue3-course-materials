@@ -1,8 +1,8 @@
 import { defineComponent } from './vendor/vue.esm-browser.js';
+import { createLocalPropOptions } from './utils/createLocalPropOptions.js';
 import UiInput from './UiInput.js';
 
-const deepEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b);
-const deepClone = (obj) => JSON.parse(JSON.stringify(obj));
+const userLocalPropOptions = createLocalPropOptions('user', { localName: 'localUser' });
 
 export default defineComponent({
   name: 'UserForm',
@@ -20,27 +20,12 @@ export default defineComponent({
 
   data() {
     return {
-      localUser: null,
+      ...userLocalPropOptions.data(),
     };
   },
 
   watch: {
-    user: {
-      immediate: true,
-      deep: true,
-      handler() {
-        if (!deepEqual(this.user, this.localUser)) {
-          this.localUser = deepClone(this.user);
-        }
-      },
-    },
-
-    localUser: {
-      deep: true,
-      handler(newValue) {
-        this.$emit(`update:user`, deepClone(this.localUser));
-      },
-    },
+    ...userLocalPropOptions.watch,
   },
 
   template: `

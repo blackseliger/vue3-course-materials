@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import { ToasterPlugin } from './plugins/toaster/toaster.js';
+import { toaster } from './toaster.js';
 
-createApp(App).use(ToasterPlugin).mount('#app');
+createApp(App).use(toaster).mount('#app');

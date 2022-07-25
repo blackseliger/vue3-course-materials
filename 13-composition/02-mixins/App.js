@@ -1,5 +1,4 @@
 import { defineComponent } from './vendor/vue.esm-browser.js';
-import { formatAsLocalDate, formatAsIsoDate } from './utils/dateFormatters.js';
 import UserForm from './UserForm.js';
 
 export default defineComponent({
@@ -13,11 +12,6 @@ export default defineComponent({
         lastName: 'lastName',
       },
     };
-  },
-
-  methods: {
-    formatAsLocalDate,
-    formatAsIsoDate,
   },
 
   template: `
